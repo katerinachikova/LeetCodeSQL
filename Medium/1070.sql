@@ -17,3 +17,10 @@ FROM (
     FROM Sales 
 ) T
 WHERE rnk=1
+
+--3
+SELECT s.product_id, s.year as first_year, s.quantity, s.price
+FROM Sales s
+WHERE s.year IN ( SELECT MIN(year) 
+                    FROM Sales s1 
+                    WHERE s.product_id = s1.product_id)
